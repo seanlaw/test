@@ -11,9 +11,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: stumpy-dev/stumpy
-      - name: Upgrade Pip, Install Minimum Requirements,
+      - name: Upgrade Pip, Install Minimum Requirements, Get Python Versions
         run: |
           python -m pip install --upgrade pip pandas lxml
+          python ./versions.py
         shell: bash
       - name: Generate Python versions
         id: set-matrix
