@@ -16,7 +16,11 @@ jobs:
           echo "python_versions=${PYTHON_VERSIONS}" >> $GITHUB_OUTPUT
         shell: bash
   test:
+    needs: generate-python-matrix
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ${{ fromJSON(needs.generate-python-matrix.outputs.python_versions) }}
     steps:
       - name: Display Python Version
         run: python -c "import sys; print(sys.version)"
@@ -24,7 +28,7 @@ jobs:
       - name: Set Up Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ '3.11' }}
+          python-version: ${{ matrix.python-version }}
       - name: Display Python Version
         run: python -c "import sys; print(sys.version)"
         shell: bash
