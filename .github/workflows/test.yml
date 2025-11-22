@@ -2,6 +2,19 @@ name: test
 on:
   workflow_dispatch:
 jobs:
+  generate-python-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      python_versions: ${{ steps.set-matrix.outputs.python_versions }}
+    steps:
+      - name: Generate Python versions
+        id: set-matrix
+        run: |
+          # Example: Get Python versions from a file, or dynamically generate them
+          # For demonstration, we'll use a static list
+          PYTHON_VERSIONS='["3.8", "3.9", "3.10", "3.11"]'
+          echo "python_versions=${PYTHON_VERSIONS}" >> $GITHUB_OUTPUT
+        shell: bash
   test:
     runs-on: ubuntu-latest
     steps:
