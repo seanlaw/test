@@ -22,8 +22,8 @@ jobs:
         run: |
           # Example: Get Python versions from a file, or dynamically generate them
           # For demonstration, we'll use a static list
-          MIN_PYTHON=$(python ./versions.py -mode min)
-          MAX_PYTHON=$(python ./versions.py -mode max)
+          MIN_PYTHON=$(python ./versions.py -mode min | grep python | awk '{print $2}')
+          MAX_PYTHON=$(python ./versions.py -mode max | grep python | awk '{print $2}')
           #PYTHON_VERSIONS='["3.10", "3.11", "3.12", "3.13"]'
           #echo "python_versions=${PYTHON_VERSIONS}" >> $GITHUB_OUTPUT
           echo $MIN_PYTHON
