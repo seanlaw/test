@@ -13,17 +13,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: stumpy-dev/stumpy
-      - name: Upgrade Pip, Install Minimum Requirements, Get Python Versions
+      - name: Upgrade Pip, Install Minimum Requirements
         run: |
           python -m pip install --upgrade pip pandas lxml
-          MIN_PYTHON=$(python ./versions.py -mode min)
-          MAX_PYTHON=$(python ./versions.py -mode max)
         shell: bash
       - name: Generate Python versions
         id: set-matrix
         run: |
           # Example: Get Python versions from a file, or dynamically generate them
           # For demonstration, we'll use a static list
+          MIN_PYTHON=$(python ./versions.py -mode min)
+          MAX_PYTHON=$(python ./versions.py -mode max)
           #PYTHON_VERSIONS='["3.10", "3.11", "3.12", "3.13"]'
           #echo "python_versions=${PYTHON_VERSIONS}" >> $GITHUB_OUTPUT
           echo "python_versions=$(python ./versions.py -mode range $MIN_PYTHON $MAX_PYTHON)" >> $GITHUB_OUTPUT
