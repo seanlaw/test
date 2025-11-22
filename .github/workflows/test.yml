@@ -26,6 +26,7 @@ jobs:
           MAX_PYTHON=$(python ./versions.py -mode max)
           #PYTHON_VERSIONS='["3.10", "3.11", "3.12", "3.13"]'
           #echo "python_versions=${PYTHON_VERSIONS}" >> $GITHUB_OUTPUT
+          python ./versions.py -mode range $MIN_PYTHON $MAX_PYTHON
           echo "python_versions=$(python ./versions.py -mode range $MIN_PYTHON $MAX_PYTHON)" >> $GITHUB_OUTPUT
         shell: bash
   test:
