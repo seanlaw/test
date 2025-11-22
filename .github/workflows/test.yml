@@ -12,7 +12,7 @@ jobs:
         run: |
           # Example: Get Python versions from a file, or dynamically generate them
           # For demonstration, we'll use a static list
-          PYTHON_VERSIONS='["3.8", "3.9", "3.10", "3.11"]'
+          PYTHON_VERSIONS='["3.10", "3.11", "3.12", "3.13"]'
           echo "python_versions=${PYTHON_VERSIONS}" >> $GITHUB_OUTPUT
         shell: bash
   test:
@@ -22,7 +22,7 @@ jobs:
       matrix:
         python-version: ${{ fromJSON(needs.generate-python-matrix.outputs.python_versions) }}
     steps:
-      - name: Display Python Version
+      - name: Display Preinstalled (Default) Python Version
         run: python -c "import sys; print(sys.version)"
         shell: bash
       - name: Set Up Python
