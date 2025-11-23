@@ -29,7 +29,7 @@ jobs:
           echo "python_versions=$(python ./versions.py -mode range $MIN_PYTHON $MAX_PYTHON)" >> $GITHUB_OUTPUT
         shell: bash
   test:
-    needs: generate-python-matrix
+    needs: generate_python_matrix
     runs-on: ubuntu-latest
     strategy:
       matrix:
