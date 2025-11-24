@@ -34,10 +34,10 @@ jobs:
   test:
     needs: generate_python_matrix
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        #python-version: ${{ fromJSON(needs.generate_python_matrix.outputs.python_versions) }}
-        python-version: ${{ fromJSON(needs.generate_python_matrix.outputs.min_python_version) }}
+    #strategy:
+    #  matrix:
+    #    python-version: ${{ fromJSON(needs.generate_python_matrix.outputs.python_versions) }}
+    #    #python-version: ${{ fromJSON(needs.generate_python_matrix.outputs.min_python_version) }}
     steps:
       - name: Display Preinstalled (Default) Python Version
         run: python -c "import sys; print(sys.version)"
@@ -45,7 +45,8 @@ jobs:
       - name: Set Up Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          #python-version: ${{ matrix.python-version }}
+          python-version: ${{ fromJSON(needs.generate_python_matrix.outputs.min_python_version) }}
       - name: Display Python Version
         run: python -c "import sys; print(sys.version)"
         shell: bash
