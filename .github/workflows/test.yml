@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       python_versions: ${{ steps.set-matrix.outputs.python_versions }}
+      min_python_version: ${{ steps.set-matrix.outputs.min_python_version }}
     steps:
       - name: Checkout STUMPY
         uses: actions/checkout@v4
@@ -27,8 +28,8 @@ jobs:
           #PYTHON_VERSIONS='["3.10", "3.11", "3.12", "3.13"]'
           #echo "python_versions=${PYTHON_VERSIONS}" >> $GITHUB_OUTPUT
           #echo "python_versions=$(python ./versions.py -mode range $MIN_PYTHON $MAX_PYTHON)" >> $GITHUB_OUTPUT
-          echo "python_version=\"$MIN_PYTHON\""
-          echo "python_version=\"$MIN_PYTHON\"" >> $GITHUB_OUTPUT
+          echo "min_python_version=\"$MIN_PYTHON\""
+          echo "min_python_version=\"$MIN_PYTHON\"" >> $GITHUB_OUTPUT
         shell: bash
   test:
     needs: generate_python_matrix
@@ -36,7 +37,7 @@ jobs:
     strategy:
       matrix:
         #python-version: ${{ fromJSON(needs.generate_python_matrix.outputs.python_versions) }}
-        python-version: ${{ fromJSON(needs.generate_python_matrix.outputs.python_version) }}
+        python-version: ${{ fromJSON(needs.generate_python_matrix.outputs.min_python_version) }}
     steps:
       - name: Display Preinstalled (Default) Python Version
         run: python -c "import sys; print(sys.version)"
