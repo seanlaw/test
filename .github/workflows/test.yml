@@ -28,7 +28,7 @@ jobs:
           #echo "python_versions=${PYTHON_VERSIONS}" >> $GITHUB_OUTPUT
           #echo "python_versions=$(python ./versions.py -mode range $MIN_PYTHON $MAX_PYTHON)" >> $GITHUB_OUTPUT
           echo "python_version=\"$MIN_PYTHON\""
-          echo "python_version=$MIN_PYTHON" >> $GITHUB_OUTPUT
+          echo "python_version=\"$MIN_PYTHON\"" >> $GITHUB_OUTPUT
         shell: bash
   test:
     needs: generate_python_matrix
