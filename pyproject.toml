@@ -6,9 +6,9 @@ platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 python = ">=3.14.0,<3.15"
 
 [tool.pixi.activation]
-# Adding first comment
-# Adding second comment
-# Adding third comment
+# Always execute ./setup.sh when activating the default environment.
+# Note that 'stumpy' will only be listed via 'pip list | grep stumpy'
+# and not via 'pixi list | grep stumpy' since 'pip install .' is used!
 scripts = ["test.sh"]
 
 [tool.pixi.tasks]
