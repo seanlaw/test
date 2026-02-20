@@ -1,0 +1,12 @@
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+
+[tool.pixi.dependencies]
+python = ">=3.14.0,<3.15"
+
+[tool.pixi.activation]
+scripts = ["test.sh"]
+
+[tool.pixi.tasks]
+some_task = 'echo "running some task"'
